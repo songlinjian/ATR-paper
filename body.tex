@@ -1,0 +1,85 @@
+\section{Introduction}
+
+   Large DNS response is identified as a issue for a long time.  There
+   is an inherent mechanism defined in [RFC1035] to handle large DNS
+   response (larger than 512 octets) by indicating (set TrunCation bit)
+   the resolver to fall back to query via TCP.  Due to the fear of cost
+   of TCP, EDNS(0) [RFC6891] was proposed which encourages server to
+   response larger response instead of falling back to TCP.  However, as
+   the increasing use of DNSSEC and IPv6, there are more public evidence
+   and concerns on user's suffering due to packets dropping caused by
+   IPv6 fragmentation in DNS due to large DNS response.
+
+   It is observed that some IPv6 network devices like firewalls
+   intentionally choose to drop the IPv6 packets with fragmentation
+   Headers[I-D.taylor-v6ops-fragdrop].  [RFC7872] reported more than 30%
+   drop rates for sending fragmented packets.  Regarding IPv6
+   fragmentation issue due to larger DNS payloads in response, one
+   measurement [IPv6-frag-DNS] reported 35% of endpoints using
+   IPv6-capable DNS resolver can not receive a fragmented IPv6 response
+   over UDP.  Moreover, most of the underlying issues with fragments are
+   unrevealed due to good redundancy and resilience of DNS.  It is hard
+   for DNS client and server operators to trace and locate the issue
+   when fragments are blocked or dropped.  The noticeable DNS failures
+   and latency experienced by end users are just the tip of the iceberg.
+   
+   Depending on retry model, the resolver's failing to receive
+   fragmented response may experience long latency or failure due to
+   timeout and reties.  One typical case is that the resolver finally
+   got the answer after several retires and it falls back to TCP after
+   deceasing the payload size in EDNS0.  To avoid that issue, some
+   authoritative servers may adopt a policy ignoring the UDP payload
+   size in EDNS0 extension and always truncating the response when the
+   response size is large than a expected one.  However one study
+   [Not-speak-TCP] shows that about 17% of resolvers in the samples can
+   not ask a query in TCP when they receive truncated response.  It
+   seems a dilemma to choose hurting either the users who can not
+   receive fragments or the users without TCP fallback capacity.  There
+   is also some voice of "moving all DNS over TCP".  But It is generally
+   desired that DNS can keep the efficiency and high performance by
+   using DNS UDP in most of time and fallback as soon as possible to TCP
+   if necessary for some corner case.
+
+   To relieve the problem, this memo introduces an small improvement on
+   DNS responding process by replying an Additional Truncated Response
+   (ATR) just after a normal large response which is to be fragmented.
+   Generally speaking ATR provides a way to decouple the EDNS0 and TCP
+   fallback in which they can work independently according to the server
+   operator's requirement.  One goal of ATR is to relieve the hurt of
+   users, both stub and recursive resolver, from the position of server,
+   both authoritative and recursive server.  It does not require any
+   changes on resolver and has a deploy-and-gain feature to encourage
+   operators to implement it to benefit their resolvers.
+
+   [REMOVE BEFORE PUBLICATION] Note that ATR is not just a proposed
+   idea.  Some advocates of ATR implemented it based on BIND9.  And
+   Some verify it based on an large-scale experiment platform of APNIC
+   lab Section 3 which is introduced in this memo.
+
+\begin{figure}[tp]
+\centering
+\includegraphics{figures/mouse}
+\caption{\blindtext}
+\end{figure}
+
+\section{Related Work}
+\blindtext
+
+And we need some citation here\cite{floyd1993random, stoica2001chord}
+
+\Blindtext
+
+\section{System Design}
+
+\subsection{The First Layer}
+\Blindtext
+
+\subsection{The Second Layer}
+\Blindtext
+
+\section{Evaluation}
+\Blindtext
+
+\section{Conclusion}
+\blindtext
+

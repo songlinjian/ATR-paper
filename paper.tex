@@ -1,0 +1,82 @@
+\documentclass[sigconf]{acmart}
+
+\usepackage[english]{babel}
+\usepackage{blindtext}
+
+% Copyright
+\renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference info
+\setcopyright{none}
+%\setcopyright{acmcopyright}
+%\setcopyright{acmlicensed}
+%\setcopyright{rightsretained}
+%\setcopyright{usgov}
+%\setcopyright{usgovmixed}
+%\setcopyright{cagov}
+%\setcopyright{cagovmixed}
+
+\settopmatter{printacmref=false, printccs=false, printfolios=true}
+
+% DOI
+\acmDOI{}
+
+% ISBN
+\acmISBN{}
+
+%Conference
+%\acmConference[Submitted for review to SIGCOMM]{}
+%\acmYear{2018}
+%\copyrightyear{}
+
+%% {} with no args suppresses printing of the price
+\acmPrice{}
+
+
+\begin{document}
+\title{ATR: Additional Truncated Packets for Large DNS Response }
+
+%\titlenote{Produces the permission block, and copyright information}
+%\subtitle{Extended Abstract}
+
+\author{Linjian Song, Shengling Wang}
+% \author{Firstname Lastname}
+% \authornote{Note}
+% \orcid{1234-5678-9012}
+% \affiliation{%
+%   \institution{Affiliation}
+%   \streetaddress{Address}
+%   \city{City} 
+%   \state{State} 
+%   \postcode{Zipcode}
+% }
+% \email{email@domain.com}
+
+% The default list of authors is too long for headers}
+\renewcommand{\shortauthors}{X.et al.}
+
+\begin{abstract}
+   Internet works on reliable naming and IP package transmission. 
+   As complexity added into Internet infrastructure due to security 
+   and stability consideration, some mismatch and unexpected fragility 
+   are exposed. One case is in the field of DNS (DNSSEC) and IPv6. 
+   There are some public evidence and concerns on IPv6 fragmentation 
+   issues due to larger DNS payloads over IPv6. Different from other 
+   measurement work, in this paper we proposed "glueless" measurement 
+   mechanism to analyze the end-to-end users experience. It is based on 
+   a live, real and global Ads system and shows that the IPv6 large 
+   packet drop rate is up to 38\%. We also identify "other issues" 
+   in some aspects(With More details). In the meanwhile, we advance 
+   a solution called ATR (Additional Truncated Response) as a fix on 
+   DNS server which requires no modification on users side (DNS resolver) and 
+   support incremental deployment. We also conducted a measurement which shows 
+   more than 68\% impacted users can be relieved on DNS latency and 
+   failures due to large DNS response.
+\end{abstract}
+
+\maketitle
+
+\input{body}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{reference}
+
+\end{document}
