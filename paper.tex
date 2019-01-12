@@ -61,13 +61,14 @@
    There are some public evidence and concerns on IPv6 fragmentation 
    issues due to larger DNS payloads over IPv6. Different from other 
    measurement work, in this paper we proposed "glueless" measurement 
-   mechanism to analyze the end-to-end users experience. It is based on 
-   a live, real and global Ads system and shows that the IPv6 large 
-   packet drop rate is up to 38\%. We also identify "other issues" 
-   in some aspects(With More details). In the meanwhile, we advance 
-   a solution called ATR (Additional Truncated Response) as a fix on 
-   DNS server which requires no modification on users side (DNS resolver) and 
-   support incremental deployment. We also conducted a measurement which shows 
+   mechanism to analyze the end-to-end users experience worldwide. 
+   It is based on a live, real and global Ads system and shows that 
+   the IPv6 large packet drop rate is up to 38\%. Our analysis shows 
+   the combination of DNSSEC, UDP and IPv6 is really not going to work 
+   very well. In the meanwhile, we advance a solution called ATR 
+   (Additional Truncated Response) as a fix on DNS server which 
+   requires no modification on users side (DNS resolver) and support 
+   incremental deployment. We also conducted a measurement which shows 
    more than 68\% impacted users can be relieved on DNS latency and 
    failures due to large DNS response.
 \end{abstract}
