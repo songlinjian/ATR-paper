@@ -85,7 +85,7 @@ Applications That Rely on Fragmentation (draft-bonica-6man-frag-deprecate) [13]
 
 
 
-\section{A measurement study on How Severe the Problem is in IPv6 DNS}
+\section{Measurement study on Large DNS Response Issue}
 
 %2 page with APNIC's measurement and result
 We begin by study IPv6 large DNS response issue using a 
@@ -93,7 +93,7 @@ novel measurement approach. Basically, we want to use our
 measurements answer the simple question: How IPv6 DNS 
 works worldwide with large DNS response? 
 
-\subsection{Case Study of the Problem}
+\subsection{A Case Study of Large DNS response}
 
 %0.5 pages
 
@@ -197,7 +197,7 @@ is this problem? We tested this question using three approaches.
 
 The measurement technique we are using is based on scripting inside online ads[TBD]. This allows us to instrument a server and get the endpoints who are executing the measurement script to interact with the server. However, we cannot see what the endpoint is doing. For example, we can see from the server when we deliver a DNS response to a client, but we have no clear way to confirm that the client received the response. Normally the mechanisms are indirect, such as looking at whether or not the client then retrieved a web object that was the target of the DNS name. This measurement approach has some degree of uncertainty, as there are a number of reasons for a missing web object fetch, and the inability to resolve the DNS name is just one of these reasons. Is there a better way to measure how DNS resolvers behave?
 
-The first approach we’ve used here is so-called "Glueless" delegation, and use of dynamically named DNS name servers. The basic approach is to remove the additional section from the “parent” DNS response that lists the IP address of the authoritative name servers for the delegated “child” domain. A resolver, when provided with this answer must suspend its effort to resolve the original DNS name and instead resolve the name server name. Only when it has completed its task can it resume the original name resolution task. We can manipulate the characteristics of the DNS response from the name server name, and we can confirm if the resolver received the response by observing whether it was then able to resume the original resolution task and query the child name server.
+The first approach we’ve used here is so-called "Glueless" delegation, a novel measurement mechanism by manipulating dynamic name on DNS name servers. The basic approach is to remove the additional section from the “parent” DNS response that lists the IP address of the authoritative name servers for the delegated “child” domain(Example TBD). A resolver, when provided with this answer must suspend its effort to resolve the original DNS name and instead resolve the name server name. Only when it has completed its task can it resume the original name resolution task. We can manipulate the characteristics of the DNS response from the name server name, and we can confirm if the resolver received the response by observing whether it was then able to resume the original resolution task and query the child name server.
 
 We tested the system using an IPv6-only name server address response that used three response sizes:
 
@@ -242,6 +242,7 @@ UDP-only queries:
 Small:  34,901,983 / 35,602,243 = 98.03\% = 1.97\% Drop 
 Medium: 16,238,433 / 17,095,165 = 92.21\% = 5.01\% Drop 
 Large:  15,257,853 / 16,424,157 = 93.90\% = 7.10\% Drop 
+
 There is certainly a clearer signal here in this data - some 5\% to 7\% of experiments used DNS resolvers that appeared to be incapable of retrieving a fragmented IPv6 UDP DNS response, as compared to the “base” loss rate as experienced by the control small response of 2\%. Tentatively, we can propose that a minimum of 3\% of clients use DNS resolvers that fail to receive fragmented IPv6 packets.
 
 However, in doing this we have filtered out more than one half of the tests, and perhaps we have filtered out those resolvers that cannot receive IPv6 fragmented packets.
@@ -338,7 +339,7 @@ AS Hits  \% of Total  AS Name,CC
 32934 1,128,751   2.5\%  FACEBOOK - Facebook, US
 20115 984,165  2.1\%  CHARTER-NET-HKY-NC - Charter Communications, US
 9498  779,603  1.7\%  BBIL-AP BHARTI Airtel Ltd., IN
-20057 438,137  1.0\%  ATT-MOBILITY-LLC-AS20057 - AT&T Mobility LLC, US
+20057 438,137  1.0\%  ATT-MOBILITY-LLC-AS20057 - AT\&T Mobility LLC, US
 17813 398,404  0.9\%  MTNL-AP Mahanagar Telephone Nigam Ltd., IN
 2527  397,832  0.9\%  SO-NET So-net Entertainment Corporation, JP
 45458 276,963  0.6\%  SBN-AWN-AS-02-AP SBN-ISP/AWN-ISP, TH
