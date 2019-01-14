@@ -326,28 +326,56 @@ This table is slightly misleading in so far as very large recursive resolvers us
 
 The second table (below)now shows the preeminent position of Google’s Public DNS service as the most heavily used recursive resolver, and its Extension Header drop issues, as shown in the example at the start of this article, is consistent with its position at the head of the list of networks that have DNS resolvers with this problem.
 
-AS Hits  \% of Total  AS Name,CC
-15169    7,952,272   17.3\% GOOGLE - Google Inc., US
-4761  6,521,674   14.2\% INDOSAT-INP-AP INDOSAT, ID
-55644 4,313,225   9.4\%  IDEANET1-IN Idea Cellular Limited, IN
-22394 4,217,285   9.2\%  CELLCO - Cellco Partnership DBA Verizon Wireless, US
-55836 4,179,921   9.1\%  RELIANCEJIO-IN Reliance Jio Infocomm Limited, IN
-10507 2,939,364   6.4\%  SPCS - Sprint Personal Communications Systems, US
-5650  2,005,583   4.4\%  FRONTIER-FRTR - Frontier Communications, US
-2516  1,322,228   2.9\%  KDDI KDDI CORPORATION, JP
-6128  1,275,278   2.8\%  CABLE-NET-1 - Cablevision Systems Corp., US
-32934 1,128,751   2.5\%  FACEBOOK - Facebook, US
-20115 984,165  2.1\%  CHARTER-NET-HKY-NC - Charter Communications, US
-9498  779,603  1.7\%  BBIL-AP BHARTI Airtel Ltd., IN
-20057 438,137  1.0\%  ATT-MOBILITY-LLC-AS20057 - AT\&T Mobility LLC, US
-17813 398,404  0.9\%  MTNL-AP Mahanagar Telephone Nigam Ltd., IN
-2527  397,832  0.9\%  SO-NET So-net Entertainment Corporation, JP
-45458 276,963  0.6\%  SBN-AWN-AS-02-AP SBN-ISP/AWN-ISP, TH
-6167  263,583  0.6\%  Cellco Partnership DBA Verizon Wireless, US
-8708  255,958  0.6\%  RCS-RDS 73-75 Dr. Staicovici, RO
-38091 255,930  0.6\%  HELLONET-AS-KR CJ-HELLOVISION, KR
-18101 168,164  0.4\%  Reliance Communications DAKC MUMBAI, IN
+% AS Hits  \% of Total  AS Name,CC
+% 15169    7,952,272   17.3\% GOOGLE - Google Inc., US
+% 4761  6,521,674   14.2\% INDOSAT-INP-AP INDOSAT, ID
+% 55644 4,313,225   9.4\%  IDEANET1-IN Idea Cellular Limited, IN
+% 22394 4,217,285   9.2\%  CELLCO - Cellco Partnership DBA Verizon Wireless, US
+% 55836 4,179,921   9.1\%  RELIANCEJIO-IN Reliance Jio Infocomm Limited, IN
+% 10507 2,939,364   6.4\%  SPCS - Sprint Personal Communications Systems, US
+% 5650  2,005,583   4.4\%  FRONTIER-FRTR - Frontier Communications, US
+% 2516  1,322,228   2.9\%  KDDI KDDI CORPORATION, JP
+% 6128  1,275,278   2.8\%  CABLE-NET-1 - Cablevision Systems Corp., US
+% 32934 1,128,751   2.5\%  FACEBOOK - Facebook, US
+% 20115 984,165  2.1\%  CHARTER-NET-HKY-NC - Charter Communications, US
+% 9498  779,603  1.7\%  BBIL-AP BHARTI Airtel Ltd., IN
+% 20057 438,137  1.0\%  ATT-MOBILITY-LLC-AS20057 - AT\&T Mobility LLC, US
+% 17813 398,404  0.9\%  MTNL-AP Mahanagar Telephone Nigam Ltd., IN
+% 2527  397,832  0.9\%  SO-NET So-net Entertainment Corporation, JP
+% 45458 276,963  0.6\%  SBN-AWN-AS-02-AP SBN-ISP/AWN-ISP, TH
+% 6167  263,583  0.6\%  Cellco Partnership DBA Verizon Wireless, US
+% 8708  255,958  0.6\%  RCS-RDS 73-75 Dr. Staicovici, RO
+% 38091 255,930  0.6\%  HELLONET-AS-KR CJ-HELLOVISION, KR
+% 18101 168,164  0.4\%  Reliance Communications DAKC MUMBAI, IN
 
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[]
+\begin{tabular}{@{}rrrll@{}}
+\toprule
+\multicolumn{1}{c}{\textbf{AS}} & \multicolumn{1}{c}{\textbf{Hits}} & \multicolumn{1}{c}{\textbf{\% of Totle}} & \multicolumn{1}{c}{\textbf{AS Name,CC}} &  \\ \midrule
+15169 & 7,952,272 & 17.3\% & GOOGLE - Google Inc., US &  \\
+4761 & 6,521,674 & 14.2\% & INDOSAT-INP-AP INDOSAT, ID &  \\
+55644 & 4,313,225 & 9.4\% & IDEANET1-IN Idea Cellular Limited, IN &  \\ 
+22394 & 4,217,285 & 9.2\% & CELLCO - Cellco Partnership DBA Verizon Wireless, US &  \\
+55836 & 4,179,921 & 9.1\% & RELIANCEJIO-IN Reliance Jio Infocomm Limited, IN &  \\
+10507 & 2,939,364 & 6.4\% & SPCS - Sprint Personal Communications Systems, US &  \\
+5650  & 2,005,583 & 4.4\% & FRONTIER-FRTR - Frontier Communications, US &  \\
+2516  & 1,322,228 & 2.9\% & KDDI KDDI CORPORATION, JP &  \\
+6128  & 1,275,278 & 2.8\% & CABLE-NET-1 - Cablevision Systems Corp., US &  \\
+32934 & 1,128,751 & 2.5\% & FACEBOOK - Facebook, US &  \\
+20115 & 984,165 & 2.1\% & CHARTER-NET-HKY-NC - Charter Communications, US &  \\
+9498  & 779,603 & 1.7\% & BBIL-AP BHARTI Airtel Ltd., IN &  \\
+20057 & 438,137 & 1.0\% & ATT-MOBILITY-LLC-AS20057 - AT\&T Mobility LLC, US &  \\
+17813 & 398,404 & 0.9\% & MTNL-AP Mahanagar Telephone Nigam Ltd., IN &  \\
+2527  & 397,832 & 0.9\% & SO-NET So-net Entertainment Corporation, JP &  \\
+45458 & 276,963 & 0.6\% & SBN-AWN-AS-02-AP SBN-ISP/AWN-ISP, TH &  \\
+6167  & 263,583 & 0.6\% & Cellco Partnership DBA Verizon Wireless, US &  \\
+8708  & 255,958 & 0.6\% & RCS-RDS 73-75 Dr. Staicovici, RO &  \\
+38091 & 255,930 & 0.6\% & HELLONET-AS-KR CJ-HELLOVISION, KR &  \\
+18101 & 168,164 & 0.4\% & Reliance Communications DAKC MUMBAI, IN &  \\\bottomrule
+\end{tabular}
+\end{table}
 
 
 % We used an experiment that tested resolver capabilities in handling
