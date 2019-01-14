@@ -1,8 +1,5 @@
 \section{Introduction}
-
 % one page
-
-
 Large DNS response is identified as a issue for a long time.  There
 is an inherent mechanism defined in [RFC1035] to handle large DNS
 response (larger than 512 octets) by indicating (set TrunCation bit)
@@ -15,7 +12,7 @@ IPv6 fragmentation in DNS due to large DNS response.
 
 It is observed that some IPv6 network devices like firewalls
 intentionally choose to drop the IPv6 packets with fragmentation
-Headers[I-D.taylor-v6ops-fragdrop].  [RFC7872] reported more than 30%
+Headers[I-D.taylor-v6ops-fragdrop].  [RFC7872] reported more than 30\%
 drop rates for sending fragmented packets.  Regarding IPv6
 fragmentation issue due to larger DNS payloads in response, one
 measurement [IPv6-frag-DNS] reported 35\% of endpoints using
@@ -294,7 +291,7 @@ We used three servers for this experiment, on serving Asia Pacific, a second ser
 
 Asia Pacific: 31\% Drop
 Americas: 37\% Drop
-Eurasia & Africa: 47\% Drop
+Eurasia \& Africa: 47\% Drop
 
 Given that this experiment occurs completely in the DNS, we can track each individual DNS resolver as they query for the name server record then, depending on if they receive the fragmented response, query for the terminal name. There are approximately 2 million recursive resolvers in today’s Internet, but only some 15,000 individual resolvers appear to serve some 90\% of all users. This implies that the behavior of the most intensively used resolvers has a noticeable impact on the overall picture of capabilities if DNS infrastructure for the Internet.
 
@@ -396,17 +393,21 @@ If we want to continue to UDP where it’s feasible, and continue to use TCP onl
 
 An approach to address this challenge is first introduce inIETF draft draft-song-atr-large-resp-00. The approach described in this draft is simple: If a DNS server provides a response that entails sending fragmented UDP packets, then the server should wait for a 10 ms period and also back the original query as a truncated response. If the client receives and reassembles the fragmented UDP response, then the ensuing truncated response will be ignored by the client’s DNS resolver as its outstanding query has already been answered. If the fragmented UDP response is dropped by the network, then the truncated response will be received (as it is far smaller), and reception of this truncated response will trigger the client to switch immediately to re-query using TCP. This behavior is illustrated in Figure 1.
 
+\begin{figure}[tp]
 \centering
 \includegraphics{figures/mouse}
 \caption{ATR behavior}
-
+\end{figure}
 
 \subsection{ATR process or Algorithm}
 
 As show in the Figure 2 the ATR module can be implemented is right after truncation loop if the packet is not going to be fragmented.
+
+\begin{figure}[tp]
 \centering
 \includegraphics{figures/mouse}
 \caption{ATR module in DNS response process}
+\end{figure}
 
 The ATR responding process goes as follows:
 
@@ -455,8 +456,9 @@ The ATR responding process goes as follows:
    ATR will helpful for resolver with TCP capacity, because the resolver
    still has a fair chance to receive the large response.
 
-   \sebsection{ATR timer}
+   \subsection{ATR timer}
 
+   TBD
 
    \subsection{ATR payload size}
       Regarding the operational choice for ATR payload size, there are some
@@ -605,34 +607,4 @@ the ATR operator is able to identify a few sites and paths, setup a
 tunable timer setting for them, or just put them into a blacklist
 without replying ATR response.
 
-Based on the above analysis it is hard to provide a perfect value of
-ATR timer for all ATR users due to the diversity of networks.  It
-seems OK to set the timer with a range from ten to hundreds ms, just
-below the timeout setting of typical resolver.  Is suggested that a
-decision should be made as operator-specific according to the
-statistic of the RTT of their users.  Some measurement shown
-[Brownlee][Liang] the mean of response time is below 50 ms for the
-sites with lots of anycast instance like L-root, .com and .net name
-servers.  For that sites, delay less than 50 ms is appropriate.
-
-%1 page from data analysis
-
-\section{Security consideration}
-
-
-There may be concerns on DDoS attack problem due to the fact that the
-ATR introduces multiple responses from authoritative server.  The
-extra packet is pretty small.  In the worst case, it's 50% more
-packets and they are small
-
-DNS cookies [RFC7873] and RRL on authoritative may be possible
-solutions
-
-%half page
-
-\section{Cost analysis}
-one or half page
-
-\section{Conclusion and Future work}
-
-half page 
+Based on the above analysis it i
