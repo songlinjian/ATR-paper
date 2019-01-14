@@ -62,7 +62,7 @@ operators to implement it to benefit their resolvers.
 
 % 1 page including tow parts in related work:
 
-% 1) measurement work
+1) measurement work
 
 Fragmentation Considered Harmful in IPv4 (and IPv6)[9]
 
@@ -78,40 +78,37 @@ ten percent of the probes did not receive fragmented packets. [12]
 
 Applications That Rely on Fragmentation (draft-bonica-6man-frag-deprecate) [13]
 
-% 2) solution and fix
+2) solution and fix
 
 
+\section{A Case Study of this problem}
 
-\section{Measurement study on Large DNS Response Issue}
-
-%2 page with APNIC's measurement and result
-We begin by study IPv6 large DNS response issue using a 
-novel measurement approach. Basically, we want to use our 
-measurements answer the simple question: How IPv6 DNS 
-works worldwide with large DNS response? 
-
-\subsection{A Case Study of Large DNS response}
-
-%0.5 pages
-
+We begin by studying IPv6 large DNS response issue using a 
+case. Basically, we want to clearly demonstrate and explain 
+the issue of combination IPv6, Large UDP Packets and the DNS. 
 To illustrate this situation, here are two DNS queries, 
 both made by a recursive resolver to an authoritative 
 name server, both using UDP over IPv6.
 
+\begin{verbatim}
 Query 1:
 
-\$ dig +bufsize=4096 +dnssec 000-4a4-000a-000a0000-b9ec853b-241-1498607999-2a72134a.ap2.
+\$ dig +bufsize=4096 +dnssec 000-4a4-000a-000
+a0000-b9ec853b-241-1498607999-2a72134a.ap2.
 dotnxdomain.net. @8.8.8.8
 139.162.21.135
 (MSG SIZE rcvd: 1190)
+\end{verbatim}
 
+\begin{verbatim}
 Query 2:
 
-\$ dig +bufsize=4096 +dnssec 000-510-000a-000a-0000-
-b9ec853b-241-1498607999-2a72134a.ap2.
+\$ dig +bufsize=4096 +dnssec 000-510-000a-000
+a0000b9ec853b-241-1498607999-2a72134a.ap2.
 dotnxdomain.net. @8.8.8.8
 status: SERVFAIL
 (MSG SIZE rcvd: 104)
+\end{verbatim}
 
 What we see here are two almost identical DNS queries that have
 been passed to Google’s Public DNS service to resolve.
@@ -180,174 +177,157 @@ UDP IPv6 packets as responses to DNS queries. To rephrase the question
 slightly, how do DNS recursive resolvers fare when the IPv6
 response from the server is fragmented?
 
-\subsection{How widespread is this problem?}
 
-For a start, it appears from the example cited here that Google’s
+\section{How widespread is this problem?}
+
+%2 page with APNIC's measurement and result
+
+For a start, it appears from the cased cited here that Google’s
 Public DNS resolvers experienced some packet-drop problem when
 they passed a fragmented IPv6 response (this problem was noted in
 mid-2017, and Google has subsequently corrected it). But was this
 problem limited to just one or two DNS resolvers, or do many other
 DNS resolvers experience a similar packet-drop issue? How widespread
-is this problem? We tested this question using three approaches.
+is this problem? Can we identify these resolvers? We tested this 
+question using three approaches (two approaches) which measures the
+scenario of combination of large DNS responses, DNS resolvers and IPv6.
 %1.5 pages
-\subsection{Repairing Missing "Glue" with Large DNS packets}
 
-The measurement technique we are using is based on scripting inside online ads[TBD]. This allows us to instrument a server and get the endpoints who are executing the measurement script to interact with the server. However, we cannot see what the endpoint is doing. For example, we can see from the server when we deliver a DNS response to a client, but we have no clear way to confirm that the client received the response. Normally the mechanisms are indirect, such as looking at whether or not the client then retrieved a web object that was the target of the DNS name. This measurement approach has some degree of uncertainty, as there are a number of reasons for a missing web object fetch, and the inability to resolve the DNS name is just one of these reasons. Is there a better way to measure how DNS resolvers behave?
-
-The first approach we’ve used here is so-called "Glueless" delegation, a novel measurement mechanism by manipulating dynamic name on DNS name servers. The basic approach is to remove the additional section from the “parent” DNS response that lists the IP address of the authoritative name servers for the delegated “child” domain(Example TBD). A resolver, when provided with this answer must suspend its effort to resolve the original DNS name and instead resolve the name server name. Only when it has completed its task can it resume the original name resolution task. We can manipulate the characteristics of the DNS response from the name server name, and we can confirm if the resolver received the response by observing whether it was then able to resume the original resolution task and query the child name server.
-
-We tested the system using an IPv6-only name server address response that used three response sizes:
-
-Small: 169 octets
-Medium: 1,428 octets
-Large: 1,886 octets
-
-The local MTU on the server was set to 1,280 octets, so both the medium and large responses were fragmented.
-
-This test was loaded into an online advertising campaign.
-
-Results - I 
-
-68,229,946 experiments 
-35,602,243 experiments used IPv6-capable resolvers 
+\subsection{Measurement Setup}
 
 
-Small:  34,901,983 / 35,602,243 = 98.03\% = 1.97\% Drop 
-Medium: 34,715,933 / 35,666,726 = 97.335\% = 2.67\% Drop 
-Large:  34,514,927 / 35,787,975 = 96.44\% = 3.56\% Drop 
+The measurement technique we are using is based on scripting inside 
+online advertisement[Ref TBD]. This allows us to instrument a server and get the 
+endpoints who are executing the measurement script to interact with 
+the server. Our measurement approach is described as follows :
 
-The first outcome from this data is somewhat surprising. While the overall penetration of IPv6 in the larger Internet is currently some 15\% of users, the DNS resolver result is far higher. Some 52\% of these 68M experiments directed their DNS queries to recursive resolvers that were capable of posing their DNS queries over a IPv6 network substrate.
+% we may need a exmaple or diagrams here
 
-That's an interesting result:
+\begin{itemize}
+  \item Each endpoint is provided with a unique	name string to eliminate the effects of DNS caching(The measuring Javascript put in advertisement generates a unique name string each endpoint)
+  \item The	DNS	name is served from	our	authoritative servers
+  \item Each DNS name contains a name creation time	component (so that we can disambiguate subsequent replay from original queries)
+  \item Resolving the DNS name requires	the	user’s	DNS	resolvers to receive a fragmented IPv6 packet
+\end{itemize}
 
-Some 52\% of tested endpoints use DNS resolvers that are capable of using IPv6.
+We tested the system using an IPv6-only name server address 
+response that used three response sizes as experiment parameters:
 
-Interpreting the packet drop probabilities for the three sizes of DNS responses is not so straight forward. There is certainty an increased probability of drop for the larger DNS responses, but this is far lower than the 40\% drop rate reported in RFC 7872.
+\begin{itemize}
+  \item Small: 169 octets
+  \item Medium: 1,428 octets
+  \item Large: 1,886 octets
+\end{itemize}
 
-It seems that we should question the experimental conditions that we used here. Are these responses actually using fragmentation in IPv6?
+We operate the experiment in IPv6 only DNS Servers, using a 1,280 
+octet MTU. So both the medium and large responses were fragmented. 
+This measurement test was loaded into an online advertising campaign 
+(When?Duration? Sample rate?). It is expected that if the client’s DNS 
+resolvers can successfully resolve	the	DNS	name they will fetch the 
+named web object, so the measurement here is one of the failure rate 
+to access the web object.
 
-We observed that a number of recursive resolvers use different query options when resolving the addresses of name servers, as distinct from resolving names. In particular, a number of resolvers, including Google’s public DNS resolvers, strip all EDNS(0) query options from these name server address resolution queries.
+It is expected that not every resolver can perform a DNS query using 
+IPv6. There are 68,229,946 experiments collected in total, out of which   
+35,602,243 experiments used IPv6-capable resolvers. So the first outcome 
+from this data is somewhat surprising. While the overall penetration of 
+IPv6 in the larger Internet is some 15\% of users when the measurement is 
+done in August 2017, the DNS resolver result is far higher. 
 
-When the query has no EDNS(0) options, and in particular when there is no UDP Buffer size option in the query, then the name server responds with what will fit in 512 octets. If the response is larger, and in our case this includes the Medium and Large tests, the name server sets the Truncated Response flag in its response to indicate that the provided response is incomplete. This Truncated Response flag is a signal to the resolver that it should query again, using TCP this time.
+So our first finding is : \textbf{Some 52\% of tested endpoints use DNS resolvers 
+that are capable of using IPv6.}
 
-In the case of this experiment we saw some 18,571,561 medium-size records resolved using TCP and 19,363,818 large-size records resolved using TCP. This means that the observed rate of failure to resolve the name is not necessarily attributable to an inability to receive fragmented IPv6 UDP packets.
+Of those that did DNS over IPv6, we observed the following Loss	Rates in fetching the web object:
 
-Perhaps if we remove all those instances that use TCP to retrieve the large DNS response, then what do we have left?
+\textbf{Result - I:}
+\begin{itemize}
+  \item Small: 	7\%
+  \item Medium: 42\%
+  \item Large: 42\%
+\end{itemize}
+Are	there regional differences? We use three different servers,	
+and	divide (roughly) clients into three	geo	areas: Americas, 
+Europe \& Africa, Asia \& Oceania.
 
-UDP-only queries: 
+\begin{table}[]
+	\caption{Geo-difference of Failure rate}
+	\centering
+\begin{tabular}{@{}lllll@{}}
+\toprule
+          & Americas & Europe\&Africa & Asia\&Oceania &  \\ \midrule
+SMALL     & 4\%      & 5\%    & 13\% &  \\
+MEDIUM    & 23\%      & 49\%   & 52\% &  \\
+LARGE     & 24\%      & 50\%   & 52\% &  \\ \bottomrule
+\end{tabular}
+\end{table}
 
-Small:  34,901,983 / 35,602,243 = 98.03\% = 1.97\% Drop 
-Medium: 16,238,433 / 17,095,165 = 92.21\% = 5.01\% Drop 
-Large:  15,257,853 / 16,424,157 = 93.90\% = 7.10\% Drop 
+A IPv6-only authoritative DNS Server serving UDP fragmented	DNS	
+responses appears to have significant problems in delivering this 
+UDP fragmented response to recursive resolvers in the Internet. 
 
-There is certainly a clearer signal here in this data - some 5\% to 7\% of experiments used DNS resolvers that appeared to be incapable of retrieving a fragmented IPv6 UDP DNS response, as compared to the “base” loss rate as experienced by the control small response of 2\%. Tentatively, we can propose that a minimum of 3\% of clients use DNS resolvers that fail to receive fragmented IPv6 packets.
+However, we cannot see what the endpoint is doing. For example, 
+we can see from the server when we deliver a DNS response to a client, 
+but we have no clear way to confirm that the client received the 
+response. Normally the mechanisms are indirect, such as looking at 
+whether or not the client then retrieved a web object that was the 
+target of the DNS name. This measurement approach has some degree of 
+uncertainty, as there are a number of reasons for a missing web object 
+fetch, and the inability to resolve the DNS name is just one of these 
+reasons. It introduce 7\% loss rate for the unfragmented DNS response 
+points to a	high noise rate in the data	collected using	this experimental 
+technique.
 
-However, in doing this we have filtered out more than one half of the tests, and perhaps we have filtered out those resolvers that cannot receive IPv6 fragmented packets.
+Is there a better way to measure how DNS resolvers behave? Can we identify 
+these resolvers?
 
-\subsection{Large DNS Packets and Web Fetch}
-
-Our second approach was to use a large response for the ‘final’ response for the requested name.
-
-The way in which this has been done is to pad the response using bogus DNSSEC signature records (RRSIG). These DNSSEC signature records are bogus in the sense that the name itself is not DNSSEC-signed, so the content of the digital signature will never be checked, but as long as the resolver is using EDNS(0) and has turned on the DNSSEC OK bit, which occurs in some 70\% of all DNS queries to authoritative name servers, then the DNSSEC signature records will be added to the response.
-
-We are now looking at the web fetch rate, and looking for a variance between the web fetch rates when the DNS responses involve UDP IPv6 fragmentation. We filtered out all experiments that did not fetch the small DNS web object, all experiments that did not set the DO bit in their query, and all experiments that used TCP for the medium and large experiments. In this case, we are looking for those experiments where a fragmented UDP IPv6 response was passed and testing whether or not the endpoint retrieved the web object.
-
-Results - II 
-
-68,229,946 experiments 
-25,096,961 experiments used UDP IPv6-capable resolvers
-           and had the DO bit set in the query
+\subsection{Repairing Missing "Glue" with Fragmented response}
 
 
-Medium: 13,648,884 / 25,096,961 = 54.38\% = 45.62\% Drop 
-Large:  13,476,800 / 24,969,527 = 53.97\% = 46.03\% Drop
+With the questions, we proposed the second approach with a DNS tricks 
+of "glueless" delegation, a novel measurement mechanism by manipulating 
+dynamic name on DNS name servers. 
 
-This is a result that is more consistent with the drop rate reported in RFC 7872, but there are a number of factors at play here, and it is not clear exactly how much of this drop rate can be directly attributed to the issue of packet fragmentation in IPv6 and the network’s handling of IPv6 packets with Extension Headers. Again, there is also the consideration that in only looking at a subset of resolvers, namely those resolvers that use IPv6, use EDNS(0) options and set the DO bit in these queries.
+We created a ”glueless”	delegation in the DNS with following properties:
 
-\subsection{Fragmented Small DNS Packets}
+\begin{itemize}
+  \item The	response to	the	query to the ‘parent’ lists	the	name servers of	
+  the	‘child’, but deliberately withholds	the	IP address of these name 
+  servers in the response. i.e. the response is missing the ‘glue’ records 
+  for the name servers.
+  \item We then inflated the response of the name server record by adding 
+  pad records to the response.
+  \item The	idea is	that the name will only	be resolved	if the resolver 
+  is capable of	receiving a large response when	trying to chase	down the 
+  name server addresses
+\end{itemize}
 
-Let’s return to the first experiment, as this form of experiment has far less potential sources of noise in the measurement. We are wanting to test whether a fragmented IPv6 packet can be received by recursive DNS resolvers, and our use of a large fragmented response is being frustrated by DNS truncation.
+It is observed that a number of recursive resolvers use different query options 
+when resolving the addresses of name servers, as distinct from resolving names. 
+In particular, a number of resolvers, including Google’s public DNS resolvers, 
+strip all EDNS(0) query options from these name server address resolution 
+queries. When the query has no EDNS(0) options, and in particular when there is 
+no UDP Buffer size option in the query, then the name server responds with what 
+will fit in 512 octets. If the response is larger, and in our case this includes 
+the Medium and Large tests, the name server sets the Truncated Response flag in 
+its response to indicate that the provided response is incomplete. This Truncated 
+Response flag is a signal to the resolver that it should query again, using TCP 
+this time. 
 
-What if we use a customized DNS name server arrangement that gratuitously fragments the small DNS response itself? While the IPv6 specification specifies that network Path MTU sizes should be no smaller than 1,280 octets, it does not specify a minimum size of fragmented IPv6 packets.
+In the case of this experiment it is observed that large amounts of queries are using TCP. 
+This means that the observed rate of failure to resolve the name is not necessarily 
+attributable to an inability to receive fragmented IPv6 UDP packets. But we	wanted to 
+pass the resolver a	large fragmented UDP response to see if received it.
 
-The approach we’ve taken in this experiment is to use a user level packet processing system that listens on UDP port 53 and passes all incoming DNS queries to a back-end DNS server. When it receives a response from this back-end server it generates a sequence of IPv6 packets that fragments the DNS payload and uses a raw device socket to pass these packets directly to the device interface.
-
-We are relying on the observation that IPv6 packet fragmentation occurs at the IP level in the protocol stack, so the IPv6 driver at the remote end will reassemble the fragments and pass the UDP payload to the DNS application, and if the payload packets are received by the resolver, there will be no trace that the IPv6 packets were fragmented.
-
-As we are manipulating the response to the query for the address of the name server, we can tell if the recursive resolver has received the fragmented packets if the resolver resumes its original query sequence and queries for the terminal name.
-
-Results - III 
-
-10,851,323 experiments used IPv6 queries for the name server address
- 6,786,967 experiments queried for the terminal DNS name
-
-Fragmented Response: 6,786,967 / 10,851,323 = 62.54\% = 37.45\% Drop
-
-This is our second result:
-
-Some 37\% of endpoints used IPv6-capable DNS resolvers that were incapable of receiving a fragmented IPv6 response.
-
-We used three servers for this experiment, on serving Asia Pacific, a second serving the America and the third serving Eurasia and Africa. There are some visible differences in the drop rate:
-
-Asia Pacific: 31\% Drop
-Americas: 37\% Drop
-Eurasia \& Africa: 47\% Drop
-
-Given that this experiment occurs completely in the DNS, we can track each individual DNS resolver as they query for the name server record then, depending on if they receive the fragmented response, query for the terminal name. There are approximately 2 million recursive resolvers in today’s Internet, but only some 15,000 individual resolvers appear to serve some 90\% of all users. This implies that the behavior of the most intensively used resolvers has a noticeable impact on the overall picture of capabilities if DNS infrastructure for the Internet.
-
-We saw 10,115 individual IPv6 addresses used by IPv6-capable recursive resolvers. Of this set of resolvers, we saw 3,592 resolvers that consistently behaved in a manner that was consistent with being unable to receive a fragmented IPv6 packet, The most intensively used recursive resolvers which exhibit this problem are shown in the following table.
-
-Resolver Hits  AS AS Name, CC
-2405:200:1606:672::5    4,178,119      55836 RELIANCEJIO-IN Reliance Jio, IN
-2402:8100:c::8 1,352,024   55644 IDEANET1-IN Idea Cellular Limited, IN
-2402:8100:c::7 1,238,764   55644 IDEANET1-IN Idea Cellular Limited, IN
-2407:0:0:2b::5 938,584  4761  INDOSAT-INP-AP INDOSAT, ID
-2407:0:0:2a::3 936,883  4761  INDOSAT-INP-AP INDOSAT, ID
-2407:0:0:2a::6 885,322  4761  INDOSAT-INP-AP INDOSAT, ID
-2407:0:0:2b::6 882,687  4761  INDOSAT-INP-AP INDOSAT, ID
-2407:0:0:2b::2 882,305  4761  INDOSAT-INP-AP INDOSAT, ID
-2407:0:0:2a::4 881,604  4761  INDOSAT-INP-AP INDOSAT, ID
-2407:0:0:2a::5 880,870  4761  INDOSAT-INP-AP INDOSAT, ID
-2407:0:0:2a::2 877,329  4761  INDOSAT-INP-AP INDOSAT, ID
-2407:0:0:2b::4 876,723  4761  INDOSAT-INP-AP INDOSAT, ID
-2407:0:0:2b::3 876,150  4761  INDOSAT-INP-AP INDOSAT, ID
-2402:8100:d::8 616,037  55644 IDEANET1-IN Idea Cellular Limited, IN
-2402:8100:d::7 426,648  55644 IDEANET1-IN Idea Cellular Limited, IN
-2407:0:0:9::2  417,184  4761  INDOSAT-INP-AP INDOSAT, ID
-2407:0:0:8::2  415,375  4761  INDOSAT-INP-AP INDOSAT, ID
-2407:0:0:8::4  414,410  4761  INDOSAT-INP-AP INDOSAT, ID
-2407:0:0:9::4  414,226  4761  INDOSAT-INP-AP INDOSAT, ID
-2407:0:0:9::6  411,993  4761  INDOSAT-INP-AP INDOSAT, ID
-
-This table is slightly misleading in so far as very large recursive resolvers use resolver “farms” and the queries are managed by a collection of query ‘slaves’. We can group these individual resolver IPv6 addresses to their common Origin AS, and look at which networks use resolvers that show this problem with IPv6 Extension Header drops.
-
-The second table (below)now shows the preeminent position of Google’s Public DNS service as the most heavily used recursive resolver, and its Extension Header drop issues, as shown in the example at the start of this article, is consistent with its position at the head of the list of networks that have DNS resolvers with this problem.
-
-% AS Hits  \% of Total  AS Name,CC
-% 15169    7,952,272   17.3\% GOOGLE - Google Inc., US
-% 4761  6,521,674   14.2\% INDOSAT-INP-AP INDOSAT, ID
-% 55644 4,313,225   9.4\%  IDEANET1-IN Idea Cellular Limited, IN
-% 22394 4,217,285   9.2\%  CELLCO - Cellco Partnership DBA Verizon Wireless, US
-% 55836 4,179,921   9.1\%  RELIANCEJIO-IN Reliance Jio Infocomm Limited, IN
-% 10507 2,939,364   6.4\%  SPCS - Sprint Personal Communications Systems, US
-% 5650  2,005,583   4.4\%  FRONTIER-FRTR - Frontier Communications, US
-% 2516  1,322,228   2.9\%  KDDI KDDI CORPORATION, JP
-% 6128  1,275,278   2.8\%  CABLE-NET-1 - Cablevision Systems Corp., US
-% 32934 1,128,751   2.5\%  FACEBOOK - Facebook, US
-% 20115 984,165  2.1\%  CHARTER-NET-HKY-NC - Charter Communications, US
-% 9498  779,603  1.7\%  BBIL-AP BHARTI Airtel Ltd., IN
-% 20057 438,137  1.0\%  ATT-MOBILITY-LLC-AS20057 - AT\&T Mobility LLC, US
-% 17813 398,404  0.9\%  MTNL-AP Mahanagar Telephone Nigam Ltd., IN
-% 2527  397,832  0.9\%  SO-NET So-net Entertainment Corporation, JP
-% 45458 276,963  0.6\%  SBN-AWN-AS-02-AP SBN-ISP/AWN-ISP, TH
-% 6167  263,583  0.6\%  Cellco Partnership DBA Verizon Wireless, US
-% 8708  255,958  0.6\%  RCS-RDS 73-75 Dr. Staicovici, RO
-% 38091 255,930  0.6\%  HELLONET-AS-KR CJ-HELLOVISION, KR
-% 18101 168,164  0.4\%  Reliance Communications DAKC MUMBAI, IN
+To solve the problem, we use a customized DNS name server arrangement that gratuitously 
+fragments the small DNS response in order to always reply with a fragmented UDP response. 
+While the IPv6 specification specifies that network Path MTU sizes should be no smaller than 1,280 
+octets, it does not specify a minimum size of fragmented IPv6 packets.
 
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
-\begin{table}[]
+\begin{table*}[t]
+	\caption{DNS Resolvers with this problem}
+	\centering
 \begin{tabular}{@{}rrrll@{}}
 \toprule
 \multicolumn{1}{c}{\textbf{AS}} & \multicolumn{1}{c}{\textbf{Hits}} & \multicolumn{1}{c}{\textbf{\% of Totle}} & \multicolumn{1}{c}{\textbf{AS Name,CC}} &  \\ \midrule
@@ -372,44 +352,54 @@ The second table (below)now shows the preeminent position of Google’s Public D
 38091 & 255,930 & 0.6\% & HELLONET-AS-KR CJ-HELLOVISION, KR &  \\
 18101 & 168,164 & 0.4\% & Reliance Communications DAKC MUMBAI, IN &  \\\bottomrule
 \end{tabular}
-\end{table}
+\label{tab:AS_group}
+\end{table*}
 
 
-% We used an experiment that tested resolver capabilities in handling
-% DNS responses that entailed the use of fragmented UDP IPv6 packets.
-% The experiment used a measurement script embedded in an online
-% ad to enlist a large number of endpoints to perform resolution of a
-% domain name[7]. For this measurement, we altered the DNS resolution
-% system to fragment certain DNS responses.
+So we change the second approach with a little changes that :
 
-% The approach we took in this experiment was to use a user-level
-% packet-processing system that listens on UDP port 53 and passes all
-% incoming DNS queries to a back-end DNS server. When it receives
-% a response from this back-end server it generates a sequence of IPv6
-% packets that fragments the DNS payload and uses a raw device socket
-% to pass these packets directly to the device interface.
+\begin{itemize}
+  \item We fragment all response of the name server record no matter the size 
+  of the response.
+  \item The	idea is	that the name will only	be resolved	if the resolver 
+  is capable of	receiving a fragmented response when trying to chase down the 
+  name server addresses
+\end{itemize}
 
-% We are relying on the observation that IPv6 packet fragmentation
-% occurs at the IP level in the protocol stack, so the IPv6 driver at the
-% remote end will reassemble the fragments and pass the UDP payload
-% to the DNS application, and if the resolver receives the payload packets
-% , there will be no trace that the IPv6 packets were fragmented.
-% The results of this experiment follow:
+The approach we’ve taken in this experiment is to use a user level packet processing system that listens on UDP port 53 and passes all incoming DNS queries to a back-end DNS server. When it receives a response from this back-end server it generates a sequence of IPv6 packets that fragments the DNS payload and uses a raw device socket to pass these packets directly to the device interface.
 
-% • 10,851,323 experiments used IPv6 queries for the name server
-% address.
+We are relying on the observation that IPv6 packet fragmentation occurs at the IP level in the protocol stack, so the IPv6 driver at the remote end will reassemble the fragments and pass the UDP payload to the DNS application, and if the payload packets are received by the resolver, there will be no trace that the IPv6 packets were fragmented.
 
-% • 6,786,967 experiments queried for the terminal DNS name.
+As we are manipulating the response to the query for the address of the name server, we can tell if the recursive resolver has received the fragmented packets if the resolver resumes its original query sequence and queries for the terminal name.
 
-% • Fragmented response: 6,786,967/10,851,323 = 62.54\% = 37.45\%
-% drop.
 
-% Some 37\% of client endpoints used IPv6-capable DNS resolvers that
-% were incapable of receiving a fragmented IPv6 response.
+\textbf{Result - II:}
 
-However, one conclusion looks starkly clear to me from these results. We can’t just assume that the DNS as we know it today will just work in an all IPv6 future Internet. We must make some changes in some parts of the protocol design to get around this current widespread problem of IPv6 Extension Header packet loss in the DNS, assuming that we want to have a DNS at all in this all-IPv6 future Internet.
+\begin{itemize}
+  \item 10,851,323 experiments used IPv6 queries for the name server address
+  \item 6,786,967 experiments queried for the terminal DNS name
+  \item Fragmented Response: 6,786,967 / 10,851,323 = 62.54\% = 37.45\% Drop
+\end{itemize}
 
-\section{ATR Mechanism}
+This is our second result: \textbf{Some 37\% of endpoints used IPv6-capable DNS resolvers that were incapable of receiving a fragmented IPv6 response.}
+
+We used three servers for this experiment, on serving Asia Pacific, a second serving the America and the third serving Eurasia and Africa. There are some visible differences in the drop rate:
+
+\begin{itemize}
+  \item Asia Pacific: 31\% Drop
+  \item Americas: 37\% Drop
+  \item Eurasia \& Africa: 47\% Drop
+\end{itemize}
+
+Given that this experiment occurs completely in the DNS, we can track each individual DNS resolver as they query for the name server record then, depending on if they receive the fragmented response, query for the terminal name. There are approximately 2 million recursive resolvers in today’s Internet, but only some 15,000 individual resolvers appear to serve some 90\% of all users. This implies that the behavior of the most intensively used resolvers has a noticeable impact on the overall picture of capabilities if DNS infrastructure for the Internet.
+
+We saw 10,115 individual IPv6 addresses used by IPv6-capable recursive resolvers. Of this set of resolvers, we saw 3,592 resolvers that consistently behaved in a manner that was consistent with being unable to receive a fragmented IPv6 packet. As very large recursive resolvers use resolver “farms” and the queries are managed by a collection of query ‘slaves’. We can group these individual resolver IPv6 addresses to their common Origin AS, and look at which networks use resolvers that show this problem with IPv6 Extension Header drops.
+
+The table \ref{tab:AS_group} now shows the preeminent position of Google’s Public DNS service as the most heavily used recursive resolver, and its Extension Header drop issues, as shown in the example at the start of this article, is consistent with its position at the head of the list of networks that have DNS resolvers with this problem.
+
+One conclusion looks starkly clear to me from these results. We can’t just assume that the DNS as we know it today will just work in an all IPv6 future Internet. We must make some changes in some parts of the protocol design to get around this current widespread problem of IPv6 Extension Header packet loss in the DNS, assuming that we want to have a DNS at all in this all-IPv6 future Internet.
+
+\section{ATR Mechanism (Half done)}
 
 \subsection{Methodology of ATR}
 
@@ -439,45 +429,44 @@ As show in the Figure 2 the ATR module can be implemented is right after truncat
 
 The ATR responding process goes as follows:
 
-   o  When an authoritative server receives a query and enters the
+\begin{itemize}
+  \item When an authoritative server receives a query and enters the
       responding process, it first go through the normal truncation loop
       to see whether the size of response surpasses the EDNS0 payload
       size.  If yes, it ends up with responding a truncated packets.  If
       no, it enters the ATR module.
-
-   o  In ATR module, similar like truncation loop, the size of response
+  \item In ATR module, similar like truncation loop, the size of response
       is compared with a value called ATR payload size.  If the response
       of a query is larger than ATR payload size, the server firstly
       sends the normal response and then coin a truncated response with
       the same ID of the query.
-
-   o  The server can reply the coined truncated response in no time.
+  \item The server can reply the coined truncated response in no time.
       But considering the possible impact of network reordering, it is
       suggested a timer to delay the second truncated response, for
-      example 10~50 millisecond which can be configured by local
+      example 10\~50 millisecond which can be configured by local
       operation.
+\end{itemize}
 
    Note that the choice of ATR payload size and timer SHOULD be
    configured locally.  And the operational consideration and guidance
-   is discussed in Section 4.2 and Section 4.1 respectively.
+   is discussed following sections.
 
    There are three typical cases of ATR-unaware resolver behavior when a
    resolver send query to an ATR server in which the server will
    generate a large response with fragments:
 
-   o  Case 1: a resolver (or sub-resolver) will receive both the large
+   \begin{itemize}
+  \item Case 1: a resolver (or sub-resolver) will receive both the large
    response and a very small truncated response in sequence.  It will
    happily accepts the first response and drop the second one because
    the transaction is over.
-
-    o  Case 2: In case a fragment is dropped in the middle, the resolver
+  \item Case 2: In case a fragment is dropped in the middle, the resolver
    will end up with only receiving the small truncated response.  It
    will retry using TCP in no time.
-
-   o  Case 3: For those (probably 30\%*17\% of them) who can not speak TCP
-      and sitting behind a firewall stubbornly dropping fragments.  Just
-      say good luck to them!
-
+  \item Case 3: For those (probably 30\%*17\% of them) who can not speak TCP
+      and sitting behind a firewall stubbornly dropping fragments.  ATR can 
+      not help!
+\end{itemize}
 
    In the case authoritative server truncated all response surpass
    certain value , for example setting IPv6-edns-size to 1220 octets,
@@ -547,7 +536,7 @@ The ATR responding process goes as follows:
    many retires.  ATR only acts to those queries from the IP address in
    the white list.
  
-\section{ATR Evaluation}
+\section{ATR Evaluation (TBD)}
 
 
    It is worth of mentioning APNIC report[How-ATR-Work] on "How well
@@ -586,7 +575,7 @@ The ATR responding process goes as follows:
 
 % 2 page from APNIC's ATR measuring article
 
-\section{Network Re-ordering Consideration}
+\section{Network Re-ordering Consideration (TBD)}
 
 %Atlas analysis
 
@@ -635,4 +624,33 @@ the ATR operator is able to identify a few sites and paths, setup a
 tunable timer setting for them, or just put them into a blacklist
 without replying ATR response.
 
-Based on the above analysis it i
+Based on the above analysis it is hard to provide a perfect value of
+ATR timer for all ATR users due to the diversity of networks.  It
+seems OK to set the timer with a range from ten to hundreds ms, just
+below the timeout setting of typical resolver.  Is suggested that a
+decision should be made as operator-specific according to the
+statistic of the RTT of their users.  Some measurement shown
+[Brownlee][Liang] the mean of response time is below 50 ms for the
+sites with lots of anycast instance like L-root, .com and .net name
+servers.  For that sites, delay less than 50 ms is appropriate.
+
+%1 page from data analysis
+
+\section{Security consideration}
+
+
+There may be concerns on DDoS attack problem due to the fact that the
+ATR introduces multiple responses from authoritative server.  The
+extra packet is pretty small.  In the worst case, it's 50% more
+packets and they are small
+
+DNS cookies [RFC7873] and RRL on authoritative may be possible
+solutions
+
+%half page
+
+\section{Cost analysis}
+%one or half page
+TBD
+\section{Conclusion and Future work}
+TBD

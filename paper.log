@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.1.1)  14 JAN 2019 16:25
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2019.1.1)  15 JAN 2019 02:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -874,8 +874,17 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmss' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-(./body.tex [1.1{/usr/local/texlive/2018basic/texmf-var/fonts/map/pdftex/updmap
-/pdftex.map}
+(./body.tex
+Overfull \hbox (10.01408pt too wide) in paragraph at lines 67--68
+[]\OT1/cmr/m/n/10 (-20) Fragmentation Con-sid-ered Harm-ful in IPv4 (and IPv6)[
+9] 
+ []
+
+
+Underfull \vbox (badness 1748) has occurred while \output is active []
+
+ [1.1{/usr/local/texlive/2018basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map
+}
 
 ]
 Overfull \hbox (4.87518pt too wide) in paragraph at lines 79--80
@@ -883,124 +892,63 @@ Overfull \hbox (4.87518pt too wide) in paragraph at lines 79--80
 a-
  []
 
-
-Overfull \hbox (7.13629pt too wide) in paragraph at lines 103--107
-\OT1/cmr/m/n/10 (-20) b9ec853b-241-1498607999-2a72134a.ap2. dot-nx-do-main.net.
-
- []
-
-
-Overfull \hbox (7.13629pt too wide) in paragraph at lines 110--115
-\OT1/cmr/m/n/10 (-20) b9ec853b-241-1498607999-2a72134a.ap2. dot-nx-do-main.net.
-
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
+<<ot1tt.cmap>>
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `cmtt' (encoding: OT1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
  [2.2]
-[3.3]
-Underfull \vbox (badness 3701) has occurred while \output is active []
+(/usr/local/texlive/2018basic/texmf-dist/tex/latex/microtype/mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+(/usr/local/texlive/2018basic/texmf-dist/tex/latex/microtype/mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 252.
 
 
-Overfull \hbox (2.11676pt too wide) in paragraph at lines 284--285
-[]\OT1/cmr/m/n/10 (-20) Fragmented Re-sponse: 6,786,967 / 10,851,323 = 62.54%
+Overfull \hbox (11.1308pt too wide) in paragraph at lines 255--262
+ [][] 
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1132) has occurred while \output is active []
+
+ [3.3]
+Underfull \vbox (badness 2302) has occurred while \output is active []
 
  [4.4]
-Overfull \hbox (14.9991pt too wide) in paragraph at lines 300--321
-\OT1/cmr/m/n/10 (-20) lu-lar Lim-ited, IN 2402:8100:c::7 1,238,764 55644 IDEANE
-T1-
- []
-
-
-Overfull \hbox (21.62024pt too wide) in paragraph at lines 300--321
-\OT1/cmr/m/n/10 (-20) 885,322 4761 INDOSAT-INP-AP IN-DOSAT, ID 2407:0:0:2b::6
- []
-
-
-Overfull \hbox (21.62024pt too wide) in paragraph at lines 300--321
-\OT1/cmr/m/n/10 (-20) 882,687 4761 INDOSAT-INP-AP IN-DOSAT, ID 2407:0:0:2b::2
- []
-
-
-Overfull \hbox (20.97578pt too wide) in paragraph at lines 300--321
-\OT1/cmr/m/n/10 (-20) 882,305 4761 INDOSAT-INP-AP IN-DOSAT, ID 2407:0:0:2a::4
- []
-
-
-Overfull \hbox (21.07579pt too wide) in paragraph at lines 300--321
-\OT1/cmr/m/n/10 (-20) 881,604 4761 INDOSAT-INP-AP IN-DOSAT, ID 2407:0:0:2a::5
- []
-
-
-Overfull \hbox (21.07579pt too wide) in paragraph at lines 300--321
-\OT1/cmr/m/n/10 (-20) 880,870 4761 INDOSAT-INP-AP IN-DOSAT, ID 2407:0:0:2a::2
- []
-
-
-Overfull \hbox (21.52023pt too wide) in paragraph at lines 300--321
-\OT1/cmr/m/n/10 (-20) 877,329 4761 INDOSAT-INP-AP IN-DOSAT, ID 2407:0:0:2b::4
- []
-
-
-Overfull \hbox (21.62024pt too wide) in paragraph at lines 300--321
-\OT1/cmr/m/n/10 (-20) 876,723 4761 INDOSAT-INP-AP IN-DOSAT, ID 2407:0:0:2b::3
- []
-
-
-Overfull \hbox (23.79802pt too wide) in paragraph at lines 300--321
-\OT1/cmr/m/n/10 (-20) 876,150 4761 INDOSAT-INP-AP IN-DOSAT, ID 2402:8100:d::8
- []
-
-
-Overfull \hbox (16.978pt too wide) in paragraph at lines 300--321
-\OT1/cmr/m/n/10 (-20) INP-AP IN-DOSAT, ID 2407:0:0:8::2 415,375 4761 INDOSAT-
- []
-
-
-Overfull \hbox (16.978pt too wide) in paragraph at lines 300--321
-\OT1/cmr/m/n/10 (-20) INP-AP IN-DOSAT, ID 2407:0:0:8::4 414,410 4761 INDOSAT-
- []
-
-
-Overfull \hbox (16.978pt too wide) in paragraph at lines 300--321
-\OT1/cmr/m/n/10 (-20) INP-AP IN-DOSAT, ID 2407:0:0:9::4 414,226 4761 INDOSAT-
- []
-
-
-Overfull \hbox (16.978pt too wide) in paragraph at lines 300--321
-\OT1/cmr/m/n/10 (-20) INP-AP IN-DOSAT, ID 2407:0:0:9::6 411,993 4761 INDOSAT-
- []
-
-
-Overfull \hbox (17.2791pt too wide) in paragraph at lines 326--347
-\OT1/cmr/m/n/10 (-20) FACE-BOOK - Face-book, US 20115 984,165 2.1% CHARTER-
- []
-
-[5.5]
-<figures/mouse.pdf, id=44, 151.56625pt x 134.5025pt>
-File: figures/mouse.pdf Graphic file (type pdf)
-<use figures/mouse.pdf>
-Package pdftex.def Info: figures/mouse.pdf  used on input line 398.
-(pdftex.def)             Requested size: 151.56587pt x 134.50215pt.
-File: figures/mouse.pdf Graphic file (type pdf)
-<use figures/mouse.pdf>
-Package pdftex.def Info: figures/mouse.pdf  used on input line 408.
-(pdftex.def)             Requested size: 151.56587pt x 134.50215pt.
- [6.6 <./figures/mouse.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [7.7])
+ [5.5]
+<figures/mouse.pdf, id=111, 151.56625pt x 134.5025pt>
+File: figures/mouse.pdf Graphic file (type pdf)
+<use figures/mouse.pdf>
+Package pdftex.def Info: figures/mouse.pdf  used on input line 416.
+(pdftex.def)             Requested size: 151.56587pt x 134.50215pt.
+File: figures/mouse.pdf Graphic file (type pdf)
+<use figures/mouse.pdf>
+Package pdftex.def Info: figures/mouse.pdf  used on input line 426.
+(pdftex.def)             Requested size: 151.56587pt x 134.50215pt.
+
+[6.6 <./figures/mouse.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 4660) has occurred while \output is active []
+
+ [7.7]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+)
 No file paper.bbl.
 - LAST -
-Extra skip:5.0pt
-Left:291.0pt/1.94444pt
-Right:286.0pt/1.94444pt
-Output:291.5pt
+Extra skip:46.09999pt
+Left:406.0pt/1.94444pt
+Right:361.84445pt/0.0pt
+Output:406.92223pt
 [8.8]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 83.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 83.
@@ -1014,33 +962,31 @@ Package rerunfilecheck Warning: File `paper.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `paper.out':
-(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
-(rerunfilecheck)             After:  3A93CB8D7D2641357E416AE2B90AF266;3362.
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
+(rerunfilecheck)             Before: E977C573F0A553D0D900ED542DF9BB30;3212
+(rerunfilecheck)             After:  64B1A9509BA811FCFCB9B01002DA0F5D;3323.
  ) 
 Here is how much of TeX's memory you used:
- 16173 strings out of 494091
- 235838 string characters out of 6163524
- 403294 words of memory out of 5000000
- 19334 multiletter control sequences out of 15000+600000
- 12458 words of font info for 83 fonts, out of 8000000 for 9000
+ 16236 strings out of 494091
+ 236984 string characters out of 6163524
+ 406467 words of memory out of 5000000
+ 19379 multiletter control sequences out of 15000+600000
+ 13396 words of font info for 89 fonts, out of 8000000 for 9000
  480 hyphenation exceptions out of 8191
- 60i,12n,94p,879b,424s stack positions out of 5000i,500n,10000p,200000b,80000s
- </Users/songlinjian/Library/texlive/2018basic/texmf-var/fonts/pk/ljfour/jkna
-ppen/ec/tcrm1000.600pk></usr/local/texlive/2018basic/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2018basic/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2018basic/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2018basic/texmf-dist/font
-s/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2018basic/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2018basic/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2018basic/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb>
-Output written on paper.pdf (8 pages, 148584 bytes).
+ 60i,12n,94p,859b,424s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2018basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx1
+0.pfb></usr/local/texlive/2018basic/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mbx12.pfb></usr/local/texlive/2018basic/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr10.pfb></usr/local/texlive/2018basic/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr12.pfb></usr/local/texlive/2018basic/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr8.pfb></usr/local/texlive/2018basic/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmss10.pfb></usr/local/texlive/2018basic/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2018basic/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2018basic/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on paper.pdf (8 pages, 178037 bytes).
 PDF statistics:
- 113 PDF objects out of 1000 (max. 8388607)
- 84 compressed objects within 1 object stream
- 28 named destinations out of 1000 (max. 500000)
- 11786 words of extra memory for PDF output out of 12000 (max. 10000000)
+ 180 PDF objects out of 1000 (max. 8388607)
+ 146 compressed objects within 2 object streams
+ 31 named destinations out of 1000 (max. 500000)
+ 12958 words of extra memory for PDF output out of 14400 (max. 10000000)
 
