@@ -2,7 +2,7 @@
 %%% Do NOT edit. File created by BibTeX with style
 %%% ACM-Reference-Format-Journals [18-Jan-2012].
 
-\begin{thebibliography}{0}
+\begin{thebibliography}{10}
 
 %%% ====================================================================
 %%% NOTE TO THE USER: you can override these defaults by providing
@@ -36,5 +36,124 @@
 \providecommand\bibinfo[2]{#2}
 \providecommand\natexlab[1]{#1}
 \providecommand\showeprint[2][]{arXiv:#2}
+
+\bibitem[\protect\citeauthoryear{3rd, Andrews, Chown, and Liu}{3rd
+  et~al\mbox{.}}{2016}]%
+        {RFC7873}
+\bibfield{author}{\bibinfo{person}{D.~Eastlake 3rd}, \bibinfo{person}{M.
+  Andrews}, \bibinfo{person}{T. Chown}, {and} \bibinfo{person}{W. Liu}.}
+  \bibinfo{year}{2016}\natexlab{}.
+\newblock \bibinfo{title}{Domain Name System (DNS) Cookies}.
+\newblock   (\bibinfo{year}{2016}).
+\newblock
+\showURL{%
+\url{https://tools.ietf.org/html/rfc7873}}
+
+
+\bibitem[\protect\citeauthoryear{de~Boer and Bosma}{de~Boer and Bosma}{2012}]%
+        {de2012discovering}
+\bibfield{author}{\bibinfo{person}{Maikel de Boer} {and}
+  \bibinfo{person}{Jeffrey Bosma}.} \bibinfo{year}{2012}\natexlab{}.
+\newblock \bibinfo{title}{Discovering Path MTU black holes on the Internet
+  using RIPE Atlas}.
+\newblock   (\bibinfo{year}{2012}).
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Gont, Linkova, Chown, and Liu}{Gont
+  et~al\mbox{.}}{2016}]%
+        {RFC7872}
+\bibfield{author}{\bibinfo{person}{F. Gont}, \bibinfo{person}{J. Linkova},
+  \bibinfo{person}{T. Chown}, {and} \bibinfo{person}{W. Liu}.}
+  \bibinfo{year}{2016}\natexlab{}.
+\newblock \bibinfo{title}{Observations on the Dropping of Packets with IPv6
+  Extension Headers in the Real World}.
+\newblock   (\bibinfo{year}{2016}).
+\newblock
+\showURL{%
+\url{https://tools.ietf.org/html/rfc7872}}
+
+
+\bibitem[\protect\citeauthoryear{Herzberg and Shulman}{Herzberg and
+  Shulman}{2013}]%
+        {herzberg2013fragmentation}
+\bibfield{author}{\bibinfo{person}{Amir Herzberg} {and} \bibinfo{person}{Haya
+  Shulman}.} \bibinfo{year}{2013}\natexlab{}.
+\newblock \showarticletitle{Fragmentation considered poisonous, or:
+  One-domain-to-rule-them-all. org}. In \bibinfo{booktitle}{{\em Communications
+  and Network Security (CNS), 2013 IEEE Conference on}}. IEEE,
+  \bibinfo{pages}{224--232}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Huston, Bonica, Baker, Hinden, Troan, and
+  Gont}{Huston et~al\mbox{.}}{2018}]%
+        {ipfragmentation}
+\bibfield{author}{\bibinfo{person}{G. Huston}, \bibinfo{person}{R. Bonica},
+  \bibinfo{person}{F. Baker}, \bibinfo{person}{R. Hinden}, \bibinfo{person}{O.
+  Troan}, {and} \bibinfo{person}{F. Gont}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \bibinfo{title}{IP Fragmentation Considered
+  Fragile-draft-ietf-intarea-frag-fragile-04}.
+\newblock   (\bibinfo{year}{2018}).
+\newblock
+\showURL{%
+\url{https://tools.ietf.org/html/draft-ietf-intarea-frag-fragile-04}}
+
+
+\bibitem[\protect\citeauthoryear{J.~Damas}{J.~Damas}{2013}]%
+        {RFC6891}
+\bibfield{author}{\bibinfo{person}{P.~Vixie J.~Damas, M.~Graff}.}
+  \bibinfo{year}{2013}\natexlab{}.
+\newblock \bibinfo{title}{Extension Mechanisms for DNS (EDNS(0))}.
+\newblock   (\bibinfo{year}{2013}).
+\newblock
+\showURL{%
+\url{https://tools.ietf.org/html/rfc6891}}
+
+
+\bibitem[\protect\citeauthoryear{Jaeggli, Colitti, Kumari, Vyncke, Kaeo, and
+  Taylor}{Jaeggli et~al\mbox{.}}{2013}]%
+        {taylorv6opsfragdrop}
+\bibfield{author}{\bibinfo{person}{J. Jaeggli}, \bibinfo{person}{L. Colitti},
+  \bibinfo{person}{W. Kumari}, \bibinfo{person}{E. Vyncke}, \bibinfo{person}{M.
+  Kaeo}, {and} \bibinfo{person}{T. Taylor}.} \bibinfo{year}{2013}\natexlab{}.
+\newblock \bibinfo{title}{Why Operators Filter Fragments and What It
+  Implies-draft-taylor-v6ops-fragdrop-02}.
+\newblock   (\bibinfo{year}{2013}).
+\newblock
+\showURL{%
+\url{https://tools.ietf.org/html/draft-taylor-v6ops-fragdrop-02}}
+
+
+\bibitem[\protect\citeauthoryear{Kent and Mogul}{Kent and Mogul}{1987}]%
+        {kent1987fragmentation}
+\bibfield{author}{\bibinfo{person}{Christopher~A Kent} {and}
+  \bibinfo{person}{Jeffrey~C Mogul}.} \bibinfo{year}{1987}\natexlab{}.
+\newblock \bibinfo{booktitle}{{\em Fragmentation considered harmful}}.
+  Vol.~\bibinfo{volume}{17}.
+\newblock
+
+
+\bibitem[\protect\citeauthoryear{Mockapetris}{Mockapetris}{1987}]%
+        {RFC1035}
+\bibfield{author}{\bibinfo{person}{P. Mockapetris}.}
+  \bibinfo{year}{1987}\natexlab{}.
+\newblock \bibinfo{title}{DOMAIN NAMES - IMPLEMENTATION AND SPECIFICATION}.
+\newblock   (\bibinfo{year}{1987}).
+\newblock
+\showURL{%
+\url{https://tools.ietf.org/html/rfc1035}}
+
+
+\bibitem[\protect\citeauthoryear{White and Huston}{White and Huston}{2018}]%
+        {Internet}
+\bibfield{author}{\bibinfo{person}{Russ White} {and} \bibinfo{person}{Geoff
+  Huston}.} \bibinfo{year}{2018}\natexlab{}.
+\newblock \bibinfo{title}{The Internet Protocol Journal}.
+\newblock   (\bibinfo{year}{2018}).
+\newblock
+\showURL{%
+\url{http://ipj.dreamhosters.com/wp-content/uploads/2018/09/ipj211.pdf}}
+
 
 \end{thebibliography}

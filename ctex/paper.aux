@@ -13,62 +13,77 @@
 \fi}
 \global\let\hyper@last\relax 
 \gdef\HyperFirstAtBeginDocument#1{#1}
-\providecommand*\HyPL@Entry[1]{}
-\HyPL@Entry{0<</S/D>>}
+\providecommand\HyField@AuxAddToFields[1]{}
+\citation{RFC1035}
+\citation{RFC6891}
+\citation{taylorv6opsfragdrop}
+\citation{RFC7872}
+\citation{kent1987fragmentation,herzberg2013fragmentation}
+\citation{taylorv6opsfragdrop}
+\citation{de2012discovering}
+\citation{ipfragmentation}
 \select@language{english}
 \@writefile{toc}{\select@language{english}}
 \@writefile{lof}{\select@language{english}}
 \@writefile{lot}{\select@language{english}}
 \@writefile{toc}{\contentsline {section}{Abstract}{1}{section*.1}}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Related Work}{1}{section.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Background}{1}{subsection.2.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Related work}{2}{subsection.2.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Study on IPv6 fragmentation and its impact in DNS}{2}{subsubsection.2.2.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.2}Fixing IPv6 fragmentation issue in DNS}{3}{subsubsection.2.2.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}A Case Study of this problem}{3}{section.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}How widespread is this problem?}{4}{section.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Measurement Setup}{4}{subsection.4.1}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Geo-difference of Failure rate\relax }}{5}{table.caption.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work(TBD)}{1}{section.2}}
+\citation{RFC7872,Internet}
+\@writefile{toc}{\contentsline {section}{\numberline {3}A Case Study of this problem}{2}{section.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}How widespread is this problem?}{3}{section.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Measurement Setup}{3}{subsection.4.1}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Geo-difference of Failure rate\relax }}{3}{table.caption.3}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tab:geo_Fail}{{1}{5}{Geo-difference of Failure rate\relax \relax }{table.caption.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Repairing Missing "Glue" with Fragmented response}{5}{subsection.4.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces DNS Resolvers with this problem\relax }}{6}{table.caption.4}}
-\newlabel{tab:AS_group}{{2}{6}{DNS Resolvers with this problem\relax \relax }{table.caption.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}ATR Mechanism (Half done)}{7}{section.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Motivation of ATR}{7}{subsection.5.1}}
-\newlabel{fig:1a}{{1a}{7}{If fragment is not dropped\relax \relax }{figure.caption.5}{}}
-\newlabel{sub@fig:1a}{{a}{7}{If fragment is not dropped\relax \relax }{figure.caption.5}{}}
-\newlabel{fig:1b}{{1b}{7}{If fragment is dropped\relax \relax }{figure.caption.5}{}}
-\newlabel{sub@fig:1b}{{b}{7}{If fragment is dropped\relax \relax }{figure.caption.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Operation of ATR\relax }}{7}{figure.caption.5}}
-\newlabel{fig:1}{{1}{7}{Operation of ATR\relax \relax }{figure.caption.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}ATR Algorithm}{7}{subsection.5.2}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces ATR module in DNS response process\relax }}{8}{figure.caption.6}}
-\newlabel{fig:2}{{2}{8}{ATR module in DNS response process\relax \relax }{figure.caption.6}{}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}ATR timer}{8}{subsubsection.5.2.1}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}ATR payload size}{8}{subsubsection.5.2.2}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.3}Less aggressiveness of ATR}{8}{subsubsection.5.2.3}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.4}Security Consideration}{9}{subsubsection.5.2.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}ATR Evaluation}{9}{section.6}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Measurement on ATR}{9}{subsection.6.1}}
+\newlabel{tab:geo_Fail}{{1}{3}{Geo-difference of Failure rate\relax \relax }{table.caption.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Repairing Missing "Glue" with Fragmented response}{4}{subsection.4.2}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces DNS Resolvers with this problem\relax }}{5}{table.caption.4}}
+\newlabel{tab:AS_group}{{2}{5}{DNS Resolvers with this problem\relax \relax }{table.caption.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}ATR Mechanism (Half done)}{5}{section.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Motivation of ATR}{5}{subsection.5.1}}
+\newlabel{fig:1a}{{1a}{6}{If fragment is not dropped\relax \relax }{figure.caption.5}{}}
+\newlabel{sub@fig:1a}{{a}{6}{If fragment is not dropped\relax \relax }{figure.caption.5}{}}
+\newlabel{fig:1b}{{1b}{6}{If fragment is dropped\relax \relax }{figure.caption.5}{}}
+\newlabel{sub@fig:1b}{{b}{6}{If fragment is dropped\relax \relax }{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Operation of ATR\relax }}{6}{figure.caption.5}}
+\newlabel{fig:1}{{1}{6}{Operation of ATR\relax \relax }{figure.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}ATR Algorithm}{6}{subsection.5.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces ATR module in DNS response process\relax }}{6}{figure.caption.6}}
+\newlabel{fig:2}{{2}{6}{ATR module in DNS response process\relax \relax }{figure.caption.6}{}}
+\citation{RFC7873}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}ATR timer}{7}{subsubsection.5.2.1}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}ATR payload size}{7}{subsubsection.5.2.2}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.3}Less aggressiveness of ATR}{7}{subsubsection.5.2.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.4}Security Consideration}{7}{subsubsection.5.2.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}ATR Evaluation}{7}{section.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Measurement on ATR}{7}{subsection.6.1}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces ASNs of IPv4 Resolvers that do not followup when given a large UDP Response 每 Top 10\relax }}{8}{table.caption.7}}
+\newlabel{tab:ASN-IPv4}{{3}{8}{ASNs of IPv4 Resolvers that do not followup when given a large UDP Response 每 Top 10\relax \relax }{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces ASNs of IPv6 Resolvers that do not followup when given a large UDP Response 每 Top 10\relax }}{8}{table.caption.8}}
+\newlabel{tab:ASN-IPv6}{{4}{8}{ASNs of IPv6 Resolvers that do not followup when given a large UDP Response 每 Top 10\relax \relax }{table.caption.8}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Failure Rate of Visible Resolvers\relax }}{9}{table.caption.9}}
 \newlabel{tab:fail_resolver}{{5}{9}{Failure Rate of Visible Resolvers\relax \relax }{table.caption.9}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Failure Rate of users\relax }}{9}{table.caption.10}}
 \newlabel{tab:fail_user}{{6}{9}{Failure Rate of users\relax \relax }{table.caption.10}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces ASNs of IPv4 Resolvers that do not followup when given a large UDP Response 穡C Top 10\relax }}{10}{table.caption.7}}
-\newlabel{tab:ASN-IPv4}{{3}{10}{ASNs of IPv4 Resolvers that do not followup when given a large UDP Response 穡C Top 10\relax \relax }{table.caption.7}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces ASNs of IPv6 Resolvers that do not followup when given a large UDP Response 穡C Top 10\relax }}{10}{table.caption.8}}
-\newlabel{tab:ASN-IPv6}{{4}{10}{ASNs of IPv6 Resolvers that do not followup when given a large UDP Response 穡C Top 10\relax \relax }{table.caption.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Analysis on Network re-ordering impact}{10}{subsection.6.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Analysis on Network re-ordering impact}{9}{subsection.6.2}}
 \bibstyle{ACM-Reference-Format}
 \bibdata{reference}
+\bibcite{RFC7873}{{1}{2016}{{3rd et~al\unhbox \voidb@x \hbox {.}}}{{3rd, Andrews, Chown, and Liu}}}
+\bibcite{de2012discovering}{{2}{2012}{{de~Boer and Bosma}}{{de~Boer and Bosma}}}
+\bibcite{RFC7872}{{3}{2016}{{Gont et~al\unhbox \voidb@x \hbox {.}}}{{Gont, Linkova, Chown, and Liu}}}
+\bibcite{herzberg2013fragmentation}{{4}{2013}{{Herzberg and Shulman}}{{Herzberg and Shulman}}}
+\bibcite{ipfragmentation}{{5}{2018}{{Huston et~al\unhbox \voidb@x \hbox {.}}}{{Huston, Bonica, Baker, Hinden, Troan, and Gont}}}
+\bibcite{RFC6891}{{6}{2013}{{J.~Damas}}{{J.~Damas}}}
+\bibcite{taylorv6opsfragdrop}{{7}{2013}{{Jaeggli et~al\unhbox \voidb@x \hbox {.}}}{{Jaeggli, Colitti, Kumari, Vyncke, Kaeo, and Taylor}}}
+\bibcite{kent1987fragmentation}{{8}{1987}{{Kent and Mogul}}{{Kent and Mogul}}}
+\bibcite{RFC1035}{{9}{1987}{{Mockapetris}}{{Mockapetris}}}
+\bibcite{Internet}{{10}{2018}{{White and Huston}}{{White and Huston}}}
 \newlabel{tocindent-1}{0pt}
 \newlabel{tocindent0}{0pt}
 \newlabel{tocindent1}{5.00002pt}
 \newlabel{tocindent2}{12.77782pt}
 \newlabel{tocindent3}{23.88895pt}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Cost analysis}{11}{section.7}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion and Future work}{11}{section.8}}
-\@writefile{toc}{\contentsline {section}{References}{11}{section*.12}}
-\newlabel{TotPages}{{11}{11}{}{page.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Cost analysis}{10}{section.7}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion and Future work}{10}{section.8}}
+\@writefile{toc}{\contentsline {section}{References}{10}{section*.12}}
+\newlabel{TotPages}{{10}{10}{}{page.10}{}}

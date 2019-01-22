@@ -1,10 +1,10 @@
 \section{Introduction}
 % one page
 Large DNS response is identified as a issue for a long time.  There
-is an inherent mechanism defined in [RFC1035] to handle large DNS
+is an inherent mechanism defined in \cite{RFC1035} to handle large DNS
 response (larger than 512 octets) by indicating (set TrunCation bit)
 the resolver to fall back to query via TCP.  Due to the fear of cost
-of TCP, EDNS(0) [RFC6891] was proposed which encourages server to
+of TCP, EDNS(0) \cite{RFC6891} was proposed which encourages server to
 response larger response instead of falling back to TCP.  However, as
 the increasing use of DNSSEC and IPv6, there are more public evidence
 and concerns on user's suffering due to packets dropping caused by
@@ -12,7 +12,7 @@ IPv6 fragmentation in DNS due to large DNS response.
 
 It is observed that some IPv6 network devices like firewalls
 intentionally choose to drop the IPv6 packets with fragmentation
-Headers[I-D.taylor-v6ops-fragdrop].  [RFC7872] reported more than 30\%
+Headers\cite{taylorv6opsfragdrop}.  \cite{RFC7872} reported more than 30\%
 drop rates for sending fragmented packets.  Regarding IPv6
 fragmentation issue due to larger DNS payloads in response, one
 measurement [IPv6-frag-DNS] reported 35\% of endpoints using
@@ -51,10 +51,6 @@ both authoritative and recursive server.  It does not require any
 changes on resolver and has a deploy-and-gain feature to encourage
 operators to implement it to benefit their resolvers.
 
-Rather than deprecating DNS over UDP and avoiding IP Fragmentation,
-this document propose a hybrid approach faster and more robust using
-UDP when we can, and TCP only when we must.
-
 
 % \begin{figure}[tp]
 % \centering
@@ -62,156 +58,28 @@ UDP when we can, and TCP only when we must.
 % \caption{\blindtext}
 % \end{figure}
 
-\section{Background and Related Work}
+\section{Related Work(TBD)}
 
 % 1 page including tow parts in related work:
-\subsection{Background}
 
-   Nowadays DNS with large response replies heavily on IP fragmentation. 
-   Even though IPv6 fragmentation are observed by some studies with 
-   notable packet drop rate but it is not a well know issue at least for 
-   end users. We will introduce a brief background how DNS evolved into 
-   this situation in this section.
+1) measurement work
 
-   DNS has an inherent mechanism defined in [RFC1035] to handle large
-   DNS response when payload size is larger than 512 Bytes by
-   indicating (set TrunCation bit) the resolver to fall back to query
-   via TCP.  However, due to the concerns on the expense of TCP,
-   TCP fall-back in DNS was in negative position in the practice of
-   DNS operation. People had to seek another way to handle large DNS
-   response when.
+Fragmentation Considered Harmful in IPv4 (and IPv6)\cite{kent1987fragmentation, herzberg2013fragmentation}
 
-   EDNS(0) [RFC2671] was introduced as a cure for the issue of large DNS
-   response and TCP fall back firstly in 1999 and obsoleted by [RFC6891]
-   in 2013.  The basic idea of EDNS(0) is to introduce a channel for
-   resolver and authoritative server to negotiate an appropriate DNS
-   payload size in end-to-end approach.
+IP Fragmentation Considered Fragile
 
-   The intention of EDNS(0) is to avoid TCP fall back.  So the use of
-   EDNS(0) make TCP fall-back rare, which in turn gives people a wrong
-   implication that EDNS(0) is more advanced than DNS TCP and DNS TCP is
-   not necessary if EDNS(0) is already supported for both resolver and
-   authoritative server.  Plus the fear of "poor" TCP performance, DNS
-   TCP function is stripped even for modern DNS implementations.  An
-   measurement study [Not-speak-TCP]showed that about 17\% of resolvers
-   in the samples can not ask a query in TCP when they receive truncated
-   response.
+Many network operators filter all IPv6 fragments.\cite{taylorv6opsfragdrop}
 
-   Today when TCP is recalled as a solutions to large DNS response, the
-   installed base of resolver without TCP function (or the middle box stops
-   DNS TCP connections) become a real issue which should be consider.
+two researchers utilized a measurement network to measure
+fragment filtering.  They sent packets, fragmented to the
+minimum MTU of 1280, to 502 IPv6 enabled and reachable
+probes. They found that during any given trial period,
+ten percent of the probes did not receive fragmented packets.\cite{de2012discovering}
 
+Applications That Rely on Fragmentation (draft-bonica-6man-frag-deprecate)\cite{ipfragmentation}
 
-It is worth to mention that IPv6 fragment issue in DNS is not well
-conceived by end users and network operator because the underlying
-issues with fragments are unrevealed due to good redundancy and
-resilience of DNS. Client may finally got a answer to their query
-by resolver's retries, falling back to TCP or even falling back to IPv4.
-The actual dropping of IPv6 fragments is hidden to users and network
-operators. But it is a barrier on the path towards a pure IPv6 only
-network.
+2) solution and fix
 
-
-\subsection{Related work}
-
-Since our paper focus on issue of IPv6 fragmentation and its
-impact on DNS, we organized the related work around this issue
-in two aspects: Study on IPv6 fragmentation and its impact
-, and proposals on how to fix or alleviate the issue in DNS.
-
-\subsubsection{Study on IPv6 fragmentation and its impact in DNS}
-
-It is a stereotype that IPv6 fragmentation has
-the same problem as in IPv4. In another word, IPv6 fragment brings
-not additional impact than in IPv4. But it is not the truth.
-There is a lack of systematic study and explanation on the
-problem caused by the combination of IPv6, Large UDP Packets
-and the DNS.
-
-By definition IP fragmentation happens when the size of a IP
-datagram generated by upper layer protocol is larger than the
-maximum transmission unit (MTU) of the outgoing network interface.
-IP fragmentation is useful to hides the entire network-level
-fragmentation issue from the upper-level protocols. However, IP
-fragmentation are long considered being a source of network
-inefficiency [Kent], security vulnerability [A. Herzberg] and
-unreliability at high data rates [RFC4963]. In addition, it was
-reported [RFC7872][[DeBoer] that some networks deliberately
-filter fragments especially in IPv6 which makes IP fragments
-less reliable.
-
-F. Gont et al.[RFC7872] adopt Active measurements by sending
-large IPv6 packets which IPv6 Extension header to web site,
-DNS server and mail server. The result shows that not only
-IPv6 fragmentation headers but IPv6 EHs in general are often
-dropped in transit networks and reported. As to the
-impact to DNS, it is reports that a 38\% packet drop rate when
-sending fragmented IPv6 packets to DNS Name servers. De BOERa
-et al. [DeBoer] sent fragmented packets to IPv6 probes.
-They found that during the test, 10\% percent of the probes
-did not receive fragmented packets. Different from RFC7872,
-the filtering appeared to be located at the edge (enterprise
-and customer networks) rather than in the core.
-
-These related work are actually the opposite case in the DNS.
-It¡¯s not the queries in the DNS that can grow to sizes that
-required packet fragmentation, but the responses. In this paper,
-we try to answer the question what is the anticipated probability
-of packet drop when sending fragmented UDP IPv6 packets as
-responses to DNS queries. It is more relevant to analysis of the
-impact to the end users' experience. The result shows 37\% packet
-drop rate which is similar with F. Gont's work [RFC7872].
-
-Song et al.[RFC8483] set up a IPv6 only DNS testbed and perform the
-measurement using Atlas probes reporting more than 7\% failure rate
-in DNS exchange due to large response generated during KSK rollover.
-However, similar with [DeBoer], they only tested hundreds of probes and paths
-which make failure rate relatively low and less accurate. In our
-measurement we used an advertisement web platform and collected
-millions of samples to reflect the real status of Internet
-fragmentation.
-
-
-\subsubsection{Fixing IPv6 fragmentation issue in DNS}
-
-Many above measurement studies identify fragmentation as an issue,
-notably in IPv6, as well as the packet drop rate observed. But few
-of them offered practical solution to fix or alleviate the problem.
-
-Some advices from operational point of view try to work around
-this issue with some short-term approach. For example it was reported
-that some root servers operators adopted a policy ignoring the UDP payload
-size in EDNS0 extension and always truncating the response when the
-response size is large than surpasses 1280 octets[root-stars]. They
-did so because large response up to 1424 octets was generated
-during KSK rollover[ICANN-KSK-Rollover].
-
-In 2015 Zhu et al.[3] proposed a Connection-Oriented DNS called T-DNS
-as a ambitious solution to improve privacy and security, as well as the
-IP fragmentation issue. It basically suggest use DNS over TLS over TCP
-all the time. It demonstrates with performance optimization technology
-like query pipelining and TCP fastopen, T-DNS achieve a notable enhanced
-performance compared to UDP. However, most of DNS traffic in the Internet
-are transmitted via UDP. It is generally desired that DNS can keep the
-efficiency and high performance by using DNS UDP in most of time and
-fallback as soon as possible to TCP if necessary for some corner case.
-That is excatly what we proposed in our paper called ATR (Additional
-Truncated Response).
-
-To address the IP fragmentation issue, Sivaraman et al.[FRAGMENTS]
-proposed a novel technique that to transmit DNS messages over multiple
-UDP datagrams by fragmenting them at the application layer.
-The objective is to allow authoritative servers to successfully reply
-to DNS queries via UDP using multiple smaller datagrams, where larger
-datagrams may not pass through the network successfully. However, like
-many new technologies such as IPv6 and DNSSEC, the adoption curve takes
-a long time to reach the point of critical mass. It is not practical
-and no incentive to adopt a new DNS transport protocol change on both
-DNS client and server. We take that adoption strategy deeply into
-account and proposed a lightweight fix which can be independently
-and incrementally deployed only to augment existing nameservers. It does
-not require any changes on millions of resolver and has a deploy-and-gain
-property to encourage operators to implement it to benefit their customers.
 
 \section{A Case Study of this problem}
 
@@ -297,7 +165,7 @@ Extension Header that it did not recognize?
 
 In some cases, implementers of IPv6 equipment have found it simpler
 to just drop all IPv6 packets that contain Extension Headers. Some
-measurements of this behavior are reported in RFC 7872[6]. This
+measurements of this behavior are reported in \cite{RFC7872, Internet}. This
 document reports a 38\% packet-drop rate when sending fragmented
 IPv6 query packets to DNS Name servers. But the example provided
 previously is in fact the opposite case to that reported in RFC 7872,
@@ -756,7 +624,7 @@ The ATR responding process goes as follows:
    extra packet is pretty small.  In the worst case, it's 50% more
    packets and they are small
 
-   DNS cookies [RFC7873] and RRL on authoritative may be possible
+   DNS cookies \cite{RFC7873} and RRL on authoritative may be possible
    solutions
 
 
@@ -848,9 +716,10 @@ the extent to which these resolvers are capable of using
 TCP when given a truncated response. We can also measure
 the extent to which ATR uses the trailing truncated response.
 
-We performed these tests over 55 million end points, using
-an online ad distribution network to deliver the test script
-across the Internet. Similar with Table \ref{tab:geo_Fail},
+We performed these tests using the same online advertisement
+distribution network to deliver the test script across the Internet.
+Over 55 million end points were collected with 113,087 IPv4 visible
+resolvers and 20,878 IPv6 visible resolvers. Similar with Table \ref{tab:geo_Fail},
 Table \ref{tab:ASN-IPv4} and Table \ref{tab:ASN-IPv6} shows
 the network location of most impacted resolvers. Table
 \ref{tab:fail_resolver} shows the results from this experiment
