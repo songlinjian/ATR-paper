@@ -31,7 +31,7 @@ deceasing the payload size in EDNS0.  To avoid that issue, some
 authoritative servers may adopt a policy ignoring the UDP payload
 size in EDNS0 extension and always truncating the response when the
 response size is large than a expected one.  However one study
-[Not-speak-TCP] shows that about 17\% of resolvers in the samples can
+\cite{a-question-of-dns-protocols} shows that about 17\% of resolvers in the samples can
 not ask a query in TCP when they receive truncated response.  It
 seems a dilemma to choose hurting either the users who can not
 receive fragments or the users without TCP fallback capacity.  There
@@ -79,8 +79,8 @@ UDP when we can, and TCP only when we must.
    DNS operation. People had to seek another way to handle large DNS
    response when.
 
-   EDNS(0) [RFC2671] was introduced as a cure for the issue of large DNS
-   response and TCP fall back firstly in 1999 and obsoleted by RFC6891 \cite{RFC6891}
+   EDNS(0) \cite{RFC2671} was introduced as a cure for the issue of large DNS
+   response and TCP fall back firstly in 1999 and obsoleted by RFC6891 
    in 2013.  The basic idea of EDNS(0) is to introduce a channel for
    resolver and authoritative server to negotiate an appropriate DNS
    payload size in end-to-end approach.
@@ -91,7 +91,7 @@ UDP when we can, and TCP only when we must.
    not necessary if EDNS(0) is already supported for both resolver and
    authoritative server.  Plus the fear of "poor" TCP performance, DNS
    TCP function is stripped even for modern DNS implementations.  An
-   measurement study [Not-speak-TCP] showed that about 17\% of resolvers
+   measurement study \cite{a-question-of-dns-protocols} showed that about 17\% of resolvers
    in the samples can not ask a query in TCP when they receive truncated
    response.
 
@@ -160,7 +160,7 @@ responses to DNS queries. It is more relevant to analysis of the
 impact to the end users' experience. The result shows 37\% packet
 drop rate which is similar with F. Gont's work \cite{RFC7872}.
 
-Song et al.[RFC8483] set up a IPv6 only DNS testbed and perform the
+Song et al.\cite{RFC8483} set up a IPv6 only DNS testbed and perform the
 measurement using Atlas probes reporting more than 7\% failure rate
 in DNS exchange due to large response generated during KSK rollover.
 However, similar with \cite{de2012discovering}, they only tested hundreds of probes and paths
@@ -182,9 +182,9 @@ that some root servers operators adopted a policy ignoring the UDP payload
 size in EDNS0 extension and always truncating the response when the
 response size is large than surpasses 1280 octets[root-stars]. They
 did so because large response up to 1424 octets was generated
-during KSK rollover[ICANN2017].
+during KSK rollover \cite{ksk-rollover-icann-v2labs.ripe.net}.
 
-In 2015 Zhu et al. [T-DNS] proposed a Connection-Oriented DNS called T-DNS
+In 2015 Zhu et al. \cite{zhu2015connection} proposed a Connection-Oriented DNS called T-DNS
 as a ambitious solution to improve privacy and security, as well as the
 IP fragmentation issue. It basically suggest use DNS over TLS over TCP
 all the time. It demonstrates with performance optimization technology

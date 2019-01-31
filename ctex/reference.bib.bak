@@ -44,21 +44,6 @@ INSTITUTION = "{RFC Editor}",
 URL={https://tools.ietf.org/html/rfc6891.txt }
 }
 
-@techreport{RFC2671,
-AUTHOR = "P. Vixie",
-TITLE = "{Extension Mechanisms for DNS (EDNS0)}",
-HOWPUBLISHED = {Internet Requests for Comments},
-TYPE="{RFC}",
-NUMBER=2671,
-PAGES = {1-7},
-YEAR = {1999},
-MONTH = {August},
-ISSN = {2070-1721},
-PUBLISHER = "{RFC Editor}",
-INSTITUTION = "{RFC Editor}",
-URL={https://tools.ietf.org/html/rfc2671.txt }
-}
-
 @techreport{RFC7872,
 AUTHOR = "F. Gont and J. Linkova and T. Chown and W. Liu",
 TITLE = "{Observations on the Dropping of Packets with IPv6 Extension Headers in the Real World}",
@@ -91,7 +76,7 @@ URL={https://tools.ietf.org/html/rfc7873.txt }
 
 @online{Internet,
   author = {Russ White and Geoff Huston},
-  title = {IPv6 Fragmentation},
+  title = {The Internet Protocol Journal},
   year = {2018},
   url = {http://ipj.dreamhosters.com/wp-content/uploads/2018/09/ipj211.pdf },
 }
@@ -118,14 +103,14 @@ URL={https://tools.ietf.org/html/rfc7873.txt }
 }
 
 @online{a-question-of-dns-protocols,
-  author = {George Michaelson},
+  author = {Carlos	MartÃ­nez},
   title = {A Question of DNS Protocols},
   year = {2013},
   url = {https://labs.ripe.net/Members/gih/a-question-of-dns-protocols},
 }
 
 @online{ksk-rollover-icann-v2,
-  author = {Carlos	Mart¨ªnez },
+  author = {Geoff Huston},
   title = {2017 DNSSEC KSK Rollover},
   year = {2017},
   url = {http://slides.lacnic.net/wp-content/uploads/2017/05/ksk-rollover-icann-v2.pdf},
@@ -252,7 +237,7 @@ INSTITUTION = "{RFC Editor}",
 URL={http://www.rfc-editor.org/rfc/rfc4821.txt}
 }
 
-@techreport{RFC8483,
+@techreport{RFC8433,
 AUTHOR = "L. Song, Ed. and D. Liu and P. Vixie and A. Kato and S. Kerr",
 TITLE = "{Yeti DNS Testbed}",
 HOWPUBLISHED = {Internet Requests for Comments},
@@ -305,18 +290,12 @@ YEAR={2013}
 }
 
 @inproceedings{zhu2015connection,
- author = {Zhu, Liang and Hu, Zi and Heidemann, John and Wessels, Duane and Mankin, Allison and Somaiya, Nikita},
- title = {Connection-Oriented DNS to Improve Privacy and Security},
- booktitle = {Proceedings of the 2015 IEEE Symposium on Security and Privacy},
- series = {SP '15},
- year = {2015},
- isbn = {978-1-4673-6949-7},
- pages = {171--186},
- url = {https://doi.org/10.1109/SP.2015.18},
- doi = {10.1109/SP.2015.18},
- acmid = {2867712},
- publisher = {IEEE Computer Society},
- address = {Washington, DC, USA},
+  title={Connection-oriented DNS to improve privacy and security},
+  author={Zhu, Liang and Hu, Zi and Heidemann, John and Wessels, Duane and Mankin, Allison and Somaiya, Nikita},
+  booktitle={Security and Privacy (SP), 2015 IEEE Symposium on},
+  pages={171--186},
+  year={2015},
+  organization={IEEE}
 }
 
 @inproceedings{zander2012mitigating,
